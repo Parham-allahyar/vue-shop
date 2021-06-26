@@ -5,8 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    SideBarStatus:true,
   },
   mutations: {
+    SidebarChenge(state){
+      state.SideBarStatus = !state.SideBarStatus;
+    }
   },
   actions: {
   },
