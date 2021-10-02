@@ -14,7 +14,7 @@ import Sidebar from "./../../components/adminpanel/sideBar/SideBar";
 import Footer from "./../../components/adminpanel/nav/Footer";
 
 export default {
-  components: { Header, Sidebar, Footer },
+  components: { Header, Sidebar, Footer, },
   beforeRouteEnter(to, from, next) {
     if (localStorage.getItem("admin_token")) {
       next({ name: "adminLogin" });
@@ -46,6 +46,7 @@ html {
   height: 100%;
   width: 100%;
   margin: 0 auto 0;
-  background-color: #f9fbfd;
+  background-color: #F5F7FB;
+
 }
 </style>

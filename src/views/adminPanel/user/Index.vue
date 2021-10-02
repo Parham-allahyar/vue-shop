@@ -1,6 +1,7 @@
 <template>
   <div class="style">
     <h3>لیست کاربران</h3>
+
     <table style="width: 100%">
       <tr>
         <th>#</th>
@@ -8,17 +9,25 @@
         <th>نام خانوادگی</th>
         <th>شماره موبایل</th>
         <th>ایمیل</th>
+        <th>مشاهده اطلاعات کاربر</th>
       </tr>
 
       <tr v-for="user in users" :key="user">
-         <td>{{ user.id  }}</td>
+        <td>{{ user.id }}</td>
         <td>{{ user.first_name }}</td>
-        <td>{{user.last_name }}</td>
-        <td>{{user.phone_number}}</td>
-        <td>{{user.email}}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.phone_number }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <router-link
+            tag="button"
+            :style="{ cursor: 'pointer' }"
+            :to="{ path: '/user/info/' + user.id }"
+            >مشاهده اطلاعات کاربر</router-link
+          >
+        </td>
       </tr>
     </table>
-    
   </div>
 </template>
 
@@ -27,16 +36,18 @@ import axios from "axios";
 export default {
   data() {
     return {
-      users : Array
+      users: null,
     };
   },
   created() {
     axios
-      .get("http://127.0.0.1:8000/users", {})
-      .then((res) => {
-    this.users = res.data.data  
+      .get("/users")
+      .then((response) => {
+        this.users = response.data;
       })
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>
@@ -67,6 +78,15 @@ th {
 }
 tr:nth-of-type(odd) {
   background: #fafafa;
+}
+
+button {
+  border: none;
+  background-color: #24a0ed;
+  padding: 0.5rem;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 1rem;
 }
 </style>
 

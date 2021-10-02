@@ -1,33 +1,53 @@
 <template>
   <div class="style">
+    <h3>لیست  مجوزها</h3>
+
     <table style="width: 100%">
       <tr>
         <th>#</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Age</th>
+        <th> نام مجوز</th>
+        <th>توضیحات</th>
+        <th>بروزرسانی مجوز</th>
       </tr>
-      <tr>
-        <td>1</td>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Jackson</td>
-        <td>94</td>
-         <td>94</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
+
+      <tr v-for="permission in permissions" :key="permission">
+      <td>{{ permission.id }}</td>
+        <td>{{ permission.name }}</td>
+         <td>{{ permission.description }}</td> 
+        <td>
+          <!-- <router-link
+            tag="button"
+            :style="{ cursor: 'pointer' }"
+            :to="{ path: '/user/info/' + role.id }"
+            >بروزرسانی مجوز</router-link
+          > -->
+        </td>
       </tr>
     </table>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      permissions: null,
+    };
+  },
+  created() {
+    axios
+      .get("permissions")
+      .then((response) => {
+        this.permissions = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+};
+</script>
+
 
 
 <style scoped>
@@ -52,11 +72,16 @@ th {
   background-color: #85b3be;
   padding: 10px;
 }
-tr:nth-of-type(odd) { 
-	background: #FaFaFa; 
-	}
+tr:nth-of-type(odd) {
+  background: #fafafa;
+}
+
+button {
+  border: none;
+  background-color: #24a0ed;
+  padding: 0.5rem;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 1rem;
+}
 </style>
-
-
-
-

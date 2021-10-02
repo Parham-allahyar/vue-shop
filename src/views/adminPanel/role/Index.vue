@@ -1,33 +1,53 @@
 <template>
   <div class="style">
+    <h3>لیست نقش ها</h3>
+
     <table style="width: 100%">
       <tr>
         <th>#</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Age</th>
+        <th> نام نقش</th>
+        <th>توضیحات</th>
+        <th>بروزرسانی نقش</th>
       </tr>
-      <tr>
-        <td>1</td>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Jackson</td>
-        <td>94</td>
-         <td>94</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
+
+      <tr v-for="role in roles" :key="role">
+        <td>{{ role.id }}</td>
+        <td>{{ role.name }}</td>
+         <td>{{ role.description }}</td>
+        <td>
+          <router-link
+            tag="button"
+            :style="{ cursor: 'pointer' }"
+            :to="{ path: '/user/info/' + role.id }"
+            >بروزرسانی</router-link
+          >
+        </td>
       </tr>
     </table>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      roles: null,
+    };
+  },
+  created() {
+    axios
+      .get("/roles")
+      .then((response) => {
+        this.roles = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+};
+</script>
+
 
 
 <style scoped>
@@ -52,9 +72,18 @@ th {
   background-color: #85b3be;
   padding: 10px;
 }
-tr:nth-of-type(odd) { 
-	background: #FaFaFa; 
-	}
+tr:nth-of-type(odd) {
+  background: #fafafa;
+}
+
+button {
+  border: none;
+  background-color: #24a0ed;
+  padding: 0.5rem;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 1rem;
+}
 </style>
 
 

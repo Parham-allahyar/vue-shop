@@ -1,6 +1,7 @@
 <template>
   <div class="style">
     <h3>آدرس های کاربر</h3>
+    <h1>{{ aaa }}</h1>
     <table style="width: 100%">
       <thead>
         <tr>
@@ -40,7 +41,23 @@
         <tr v-for="user in users.creats" :key="user">
           <td>{{ user.id + 1 }}</td>
           <td>{{ user.comment }}</td>
-          
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>سفارشات کاربر</h3>
+    <table style="width: 100%">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>نظر</th>
+        </tr>
+      </thead>
+
+      <tbody v-for="users in userInfo" :key="users">
+        <tr v-for="user in users.creats" :key="user">
+          <td>{{ user.id + 1 }}</td>
+          <td>{{ user.comment }}</td>
         </tr>
       </tbody>
     </table>
@@ -58,19 +75,15 @@ export default {
     };
   },
   created() {
-    axios.get("http://127.0.0.1:8000/user/info/1").then((res) => {
-      this.userInfo = res.data.data;
-      // console.log(this.userInfo.data.addresses)
-      // this.comments = this.users.map((user) => {
-      //   return { id: user.creats.id, comment: user.creats.comment };
-      // });
-
-      // console.log(this.comments);
-      // this.addresses = res.data.data.map((addresse) => {
-      //   return { id: addresse.id, city: addresse.city };
-      // });
-    });
-    //   .catch((err) => console.log(err));
+    axios
+      .get("http://127.0.0.1:8001/user/info/" + this.$route.params.id)
+      .then((response) => {
+        this.userInfo = response.data;
+        console.log(this.userInfo);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>

@@ -1,33 +1,41 @@
 <template>
   <div class="style">
+    <h3>لیست فروشندگان</h3>
     <table style="width: 100%">
       <tr>
         <th>#</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Age</th>
+        <th>نام</th>
+        <th>ایمیل</th>
       </tr>
-      <tr>
-        <td>1</td>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Jackson</td>
-        <td>94</td>
-         <td>94</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
+
+      <tr v-for="admin in admins" :key="admin">
+        <td>{{ admin.id }}</td>
+        <td>{{ admin.name }}</td>
+        <td>{{ admin.email }}</td>
       </tr>
     </table>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      admins: Array,
+    };
+  },
+  created() {
+    axios
+      .get("/admins")
+      .then((res) => {
+        this.admins = res.data;
+      })
+      .catch((err) => console.log(err));
+  },
+};
+</script>
+
 
 
 <style scoped>
@@ -52,9 +60,9 @@ th {
   background-color: #85b3be;
   padding: 10px;
 }
-tr:nth-of-type(odd) { 
-	background: #FaFaFa; 
-	}
+tr:nth-of-type(odd) {
+  background: #fafafa;
+}
 </style>
 
 

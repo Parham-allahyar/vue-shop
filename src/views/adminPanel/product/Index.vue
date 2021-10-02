@@ -1,33 +1,55 @@
 <template>
   <div class="style">
+    <h3>لیست سفارشات</h3>
     <table style="width: 100%">
       <tr>
         <th>#</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Age</th>
+        <th>کد محصول</th>
+        <th>نام محصول</th>
+        <th>موجودی</th>
+        <th>نام فروشنده</th>
+        <th>قیمت</th>
       </tr>
-      <tr>
-        <td>1</td>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Jackson</td>
-        <td>94</td>
-         <td>94</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
+
+      <tr v-for="product in products" :key="product">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.price }}</td>
+        <!-- <td>
+          <router-link
+            tag="button"
+            :style="{ cursor: 'pointer' }"
+            :to="{ path: '/user/info/' + user.id }"
+            >مشاهده اطلاعات کاربر</router-link
+          >
+        </td> -->
       </tr>
     </table>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      products: Array,
+    };
+  },
+  created() {
+    axios
+      .get("/products")
+      .then((res) => {
+        this.products = res.data;
+        console.log(this.products)
+      })
+      .catch((err) => console.log(err));
+  },
+};
+</script>
+
 
 
 <style scoped>
@@ -52,9 +74,9 @@ th {
   background-color: #85b3be;
   padding: 10px;
 }
-tr:nth-of-type(odd) { 
-	background: #FaFaFa; 
-	}
+tr:nth-of-type(odd) {
+  background: #fafafa;
+}
 </style>
 
 

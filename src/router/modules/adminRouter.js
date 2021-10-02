@@ -4,17 +4,16 @@ export default [
     name: "adminRegister",
     component: () => import("../../views/adminPanel/auth/Register.vue"),
   },
-  {
-    path: "/admin/login",
-    name: "adminLogin",
-    component: () => import("../../views/adminPanel/auth/Login.vue"),
-  },
+  // {
+  //   path: "/admin/login",
+  //   name: "adminLogin",
+  //   component: () => import("../../views/adminPanel/auth/Login.vue"),
+  // },
   {
     path: "/adminpanel",
     name: "adminPanel",
     component: () => import("../../layout/adminPanel/index.vue"),
     children: [
-
       //Product
       {
         path: "product/create",
@@ -32,68 +31,54 @@ export default [
         component: () => import("../../views/adminPanel/product/Update.vue"),
       },
 
-      //Role
-      // {
-      //   path: "role/create",
-      //   name: "createrole",
-      //   component: () => import("../../views/admin/role/Create.vue"),
-      // },
+      // Role
+      {
+        path: "role/create",
+        name: "createrole",
+        component: () => import("../../views/adminPanel/role/Create.vue"),
+      },
       {
         path: "role/index",
         name: "indexrole",
         component: () => import("../../views/adminPanel/role/Index.vue"),
       },
-      // {
-      //   path: "role/update",
-      //   name: "updaterole",
-      //   component: () => import("../../views/admin/role/Update.vue"),
-      // },
+      {
+        path: "role/update",
+        name: "updaterole",
+        component: () => import("../../views/adminPanel/role/Update.vue"),
+      },
 
-      //Permission
-      // {
-      //   path: "permission/create",
-      //   name: "createPermission",
-      //   component: () => import("../../views/admin/permission/Create.vue"),
-      // },
+      // Permission
+      {
+        path: "permission/create",
+        name: "createPermission",
+        component: () => import("../../views/adminPanel/permission/Create.vue"),
+      },
        {
         path: "permission/index",
         name: "indexPermission",
         component: () => import("../../views/adminPanel/permission/Index.vue"),
       },
-      // {
-      //   path: "permission/update",
-      //   name: "updatePermission",
-      //   component: () => import("../../views/admin/permission/Update.vue"),
-      // },
+      {
+        path: "permission/update",
+        name: "updatePermission",
+        component: () => import("../../views/adminPanel/permission/Update.vue"),
+      },
 
       //User
-      {
-        path: "user/create",
-        name: "createCustomer",
-        component: () => import("../../views/adminPanel/user/Create.vue"),
-      },
+      
       {
         path: "user/index",
         name: "indexCustomer",
         component: () => import("../../views/adminPanel/user/Index.vue"),
       },
       {
-        path: "user/update",
-        name: "updateCustomer",
-        component: () => import("../../views/adminPanel/user/Update.vue"),
-      },
-      {
-        path: "user/info",
+        path: "/user/info/:id",
         name: "userInfo",
         component: () => import("../../views/adminPanel/user/Info.vue"),
       },
 
       //Seller
-      {
-        path: "seller/create",
-        name: "createSeller",
-        component: () => import("../../views/adminPanel/seller/Create.vue"),
-      },
       {
         path: "seller/index",
         name: "indexSeller",
@@ -104,11 +89,6 @@ export default [
         name: "indexSeller",
         component: () => import("../../views/adminPanel/seller/Info.vue"),
       },
-      {
-        path: "seller/update",
-        name: "updateSeller",
-        component: () => import("../../views/adminPanel/seller/Update.vue"),
-      },
 
       //Category
       {
@@ -116,7 +96,7 @@ export default [
         name: "createCategory",
         component: () => import("../../views/adminPanel/category/Create.vue"),
       },
-       {
+      {
         path: "category/index",
         name: "indexCategory",
         component: () => import("../../views/adminPanel/category/Index.vue"),
@@ -125,7 +105,15 @@ export default [
         path: "category/update",
         name: "updateCategory",
         component: () => import("../../views/adminPanel/category/Update.vue"),
-       },
+      },
+
+      //Orders
+
+      {
+        path: "order/index",
+        name: "indexOrder",
+        component: () => import("../../views/adminPanel/order/Index.vue"),
+      },
 
       //Admin
       {

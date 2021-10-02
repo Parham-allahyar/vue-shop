@@ -1,11 +1,11 @@
 <template>
   <div class="style">
     <h3>لیست فروشندگان</h3>
+   
     <table style="width: 100%">
       <tr>
         <th>#</th>
         <th>نام</th>
-       
         <th>ایمیل</th>
       </tr>
 
@@ -28,7 +28,7 @@ export default {
   },
   created() {
     axios
-      .get("http://127.0.0.1:8000/sellers", {})
+      .get("/sellers", {})
       .then((res) => {
         this.sellers = res.data.data;
    

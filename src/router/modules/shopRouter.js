@@ -9,4 +9,9 @@ export default [
     name: "",
     component: () => import("../../views/shop/Auth.vue"),
   },
+  {
+    path: "/product",
+    name: "",
+    component: () => import("../../views/shop/Product.vue"),
+  },
 ];
